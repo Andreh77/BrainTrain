@@ -6,15 +6,6 @@ using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
-    public Color header, background;
-
-    public void Hover(BaseEventData data)
-    {
-        if(data.selectedObject != null)
-        {
-            GameObject canvas = data.selectedObject;
-            canvas.GetComponent<Image>().color = background;
-            Debug.Log("OVER BUTTON");
-        }
-    }
+    public Color normal, header, background;
+    public ButtonManager selectedButton;
 }

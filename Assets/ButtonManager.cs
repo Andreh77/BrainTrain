@@ -4,19 +4,37 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ButtonManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class ButtonManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
+    public bool select;
+    public List<Image> buttonImages = new List<Image>();
+    public MainMenuManager mainMenuManager;
+    public GameObject panel;
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (mainMenuManager.selectedButton != null) { mainMenuManager.selectedButton.ChangeImageColour(mainMenuManager.normal); mainMenuManager.selectedButton.panel.SetActive(false); }
+        mainMenuManager.selectedButton = this;
+        ChangeImageColour(mainMenuManager.background);
+        panel.SetActive(true);
+        Debug.Log("DO SOMETHING");
+    }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log(gameObject.name);
-        gameObject.GetComponent<Image>().color 
-            = transform.root.GetComponent<MainMenuManager>().background;
+        ChangeImageColour(mainMenuManager.background);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        if(mainMenuManager.selectedButton == this) { return; }
+        ChangeImageColour(mainMenuManager.normal);
+    }
 
-        gameObject.GetComponent<Image>().color
-            = transform.root.GetComponent<MainMenuManager>().header;
+    public void ChangeImageColour(Color color)
+    {
+        foreach (Image i in buttonImages)
+        {
+            i.color = color;
+        }
     }
 }
