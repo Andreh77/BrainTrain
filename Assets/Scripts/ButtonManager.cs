@@ -10,11 +10,11 @@ public class ButtonManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public List<Image> buttonImages = new List<Image>();
     public MainMenuManager mainMenuManager;
     public GameObject panel;
-    
+
     public void OnPointerClick(PointerEventData eventData)
     {
-        mainMenuManager.clickButtonSound.Play();
         if (mainMenuManager.selectedButton != null) { mainMenuManager.selectedButton.ChangeImageColour(mainMenuManager.normal); mainMenuManager.selectedButton.panel.SetActive(false); }
+        if (mainMenuManager.selectedButton != this) { mainMenuManager.clickButtonSound.Play(); }
         mainMenuManager.selectedButton = this;
 
         ChangeImageColour(mainMenuManager.background);
@@ -23,7 +23,14 @@ public class ButtonManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        mainMenuManager.overButtonSound.Play();
+        if (mainMenuManager.selectedButton != null)
+        {
+            if (mainMenuManager.selectedButton != this)
+            {
+                mainMenuManager.overButtonSound.Play();
+            }
+        }
+        
         ChangeImageColour(mainMenuManager.background);
     }
 
