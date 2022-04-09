@@ -10,16 +10,20 @@ public class ButtonManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public List<Image> buttonImages = new List<Image>();
     public MainMenuManager mainMenuManager;
     public GameObject panel;
+    
     public void OnPointerClick(PointerEventData eventData)
     {
+        mainMenuManager.clickButtonSound.Play();
         if (mainMenuManager.selectedButton != null) { mainMenuManager.selectedButton.ChangeImageColour(mainMenuManager.normal); mainMenuManager.selectedButton.panel.SetActive(false); }
         mainMenuManager.selectedButton = this;
+
         ChangeImageColour(mainMenuManager.background);
         panel.SetActive(true);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        mainMenuManager.overButtonSound.Play();
         ChangeImageColour(mainMenuManager.background);
     }
 
