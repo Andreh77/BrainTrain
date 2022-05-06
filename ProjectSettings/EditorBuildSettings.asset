@@ -6,12 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/MainMenu.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/GameScene.unity
     guid: 8cf989c76aa6c5941be549de33821c3a
   - enabled: 1
-    path: Assets/Scenes/Reflex(ClickMovingCircles).unity
+    path: Assets/Scenes/CircleClicker.unity
     guid: 0786d5d3be6694e4da860cfe147ca18f
   m_configObjects: {}

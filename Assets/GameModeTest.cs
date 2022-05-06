@@ -2,19 +2,20 @@ using UnityEngine;
 
 public class GameModeTest : MonoBehaviour
 {
-    public Camera cam;
     float worldWidth;
     float worldHeight;
     Vector2 dir;
     public float speed = 10f;
     bool hasNewTopDir, hasNewBottomDir, hasNewLeftDir, hasNewRightDir;
 
+    public ContactFilter2D me;
+    float height;
+    float width;
     void Start()
     {
-        cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+        height = Camera.main.orthographicSize * 2;
+        width = height * Camera.main.aspect;
         float aspect = (float)Screen.width / Screen.height;
-        worldWidth = (cam.orthographicSize * 2);
-        worldHeight = (worldHeight * aspect);
 
         //Debug.Log(worldHeight + " " + worldWidth);
 
@@ -24,7 +25,8 @@ public class GameModeTest : MonoBehaviour
     void Update()
     {
         transform.Translate(dir.normalized * speed * Time.deltaTime);
-        if(transform.position.y > 5 - .5f && !hasNewTopDir)
+
+        if(transform.position.y > (height/2) - .5f && !hasNewTopDir)
         {
             dir = ReflectVector(dir, new Vector2(0, 1));
             hasNewTopDir = true;
@@ -32,7 +34,8 @@ public class GameModeTest : MonoBehaviour
             hasNewLeftDir = false;
             hasNewRightDir = false;
         }     
-        else if(transform.position.y < -5 + .5f && !hasNewBottomDir)
+        
+        if(transform.position.y < -(height / 2) + .5f && !hasNewBottomDir)
         {
             dir = ReflectVector(dir, new Vector2(0, -1));
             hasNewTopDir = false;
@@ -41,7 +44,7 @@ public class GameModeTest : MonoBehaviour
             hasNewRightDir = false;
         }
         
-        if(transform.position.x > 5 - .5f && !hasNewRightDir)
+        if(transform.position.x > (width / 2) - .5f && !hasNewRightDir) 
         {
             dir = ReflectVector(dir, new Vector2(-1, 0));
             hasNewTopDir = false;
@@ -49,7 +52,8 @@ public class GameModeTest : MonoBehaviour
             hasNewLeftDir = false;
             hasNewRightDir = true;
         }    
-        else if(transform.position.x < -5 + .5f && !hasNewLeftDir)
+        
+        if(transform.position.x < -(width / 2) + .5f && !hasNewLeftDir)
         {
             dir = ReflectVector(dir, new Vector2(1, 0));
             hasNewTopDir = false;
