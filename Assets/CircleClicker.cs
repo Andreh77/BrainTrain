@@ -21,8 +21,8 @@ public class CircleClicker : GameMode
     float height;
     float width;
     public GameObject destroyParticle;
-
-
+    public GameObject soundEffect;
+    public float startPitch = 0.5f;
     private void Start()
     {
         height = Camera.main.orthographicSize * 2;
@@ -31,6 +31,7 @@ public class CircleClicker : GameMode
         numberOfBalls = level * 2;
         SpawnBalls();
         timer = new Timer();
+        
     }
 
     public void CheckClick()
@@ -40,12 +41,21 @@ public class CircleClicker : GameMode
         if (hit.collider != null)
         {
             Destroy(hit.collider.gameObject);
+
             GameObject particle = Instantiate(destroyParticle, hit.transform.position, hit.transform.rotation);
+
             Destroy(particle, 2f);
+
+            GameObject sound = Instantiate(soundEffect);
+            sound.GetComponent<AudioSource>().pitch = startPitch;
+            if (startPitch < 1.5) { startPitch += 0.1f; }
+            
+            Destroy(sound, 2f);
+
             numberOfBalls--;
         }
     }
-    private void Update()
+    private void LateUpdate()
     {
         if(!paused && Input.GetKeyDown(KeyCode.Mouse0))
         {
@@ -83,6 +93,7 @@ public class CircleClicker : GameMode
 
     public void SpawnBalls()
     {
+        startPitch = 0.2f;
         for (int i = 0; i < numberOfBalls; i++)
         {
             GameObject GO = Instantiate(ball);
