@@ -7,7 +7,7 @@ public class CircleClicker : GameMode
     public GameObject startUI;
 
     public int numberOfBalls = 10;
- 
+    int ballsLeft = 10;
     public TMP_InputField inputField;
     public TMP_Text scoresUI;
     public List<double> scores = new List<double>();
@@ -28,10 +28,10 @@ public class CircleClicker : GameMode
         height = Camera.main.orthographicSize * 2;
         width = height * Camera.main.aspect;
         startUI.SetActive(true);
-        numberOfBalls = level * 2;
+        //numberOfBalls = level * 2;
+        ballsLeft = numberOfBalls;
         SpawnBalls();
-        timer = new Timer();
-        
+        timer = new Timer();    
     }
 
     public void CheckClick()
@@ -52,7 +52,7 @@ public class CircleClicker : GameMode
             
             Destroy(sound, 2f);
 
-            numberOfBalls--;
+            ballsLeft--;
         }
     }
     private void LateUpdate()
@@ -70,7 +70,7 @@ public class CircleClicker : GameMode
             CheckClick();
         }
         
-        if(timer.running && numberOfBalls == 0)
+        if(timer.running && ballsLeft == 0)
         {
             timer.Stop();
             double score = timer.time;
@@ -84,9 +84,10 @@ public class CircleClicker : GameMode
 
     public void NextLevel()
     {
-        scoresUI.text += "Level " + (level) + " Score: " + scores[scores.Count - 1].ToString("F4") + " seconds \n";
+        scoresUI.text += "Attempt " + (level) + " Score: " + scores[scores.Count - 1].ToString("F4") + " seconds \n";
         level++;
-        numberOfBalls = level * 2;
+        //numberOfBalls = level * 2;
+        ballsLeft = numberOfBalls;
         timer.Reset();
         SpawnBalls();
     }
