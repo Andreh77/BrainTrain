@@ -207,10 +207,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 652733218}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: loadScene
-        m_Mode: 5
+      - m_Target: {fileID: 1798714922}
+        m_TargetAssemblyTypeName: GameSetup, Assembly-CSharp
+        m_MethodName: MainMenu
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -564,7 +564,7 @@ MonoBehaviour:
   min: 0.5
   speed: 5
   up: 0
---- !u!1 &652733217
+--- !u!1 &1051791466
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -572,8 +572,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 652733219}
-  - component: {fileID: 652733218}
+  - component: {fileID: 1051791468}
+  - component: {fileID: 1051791467}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -581,27 +581,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &652733218
+--- !u!114 &1051791467
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 652733217}
+  m_GameObject: {fileID: 1051791466}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e05a9ec06fa5c645a076204c5344883, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &652733219
+  i: 0
+--- !u!4 &1051791468
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 652733217}
+  m_GameObject: {fileID: 1051791466}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 396.0484, y: 288.68002, z: 4.485075}
+  m_LocalPosition: {x: 633.9434, y: 260.32562, z: 5.432513}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1136,6 +1137,7 @@ GameObject:
   - component: {fileID: 1798714917}
   - component: {fileID: 1798714916}
   - component: {fileID: 1798714921}
+  - component: {fileID: 1798714922}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1268,6 +1270,19 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   priority: 0
+--- !u!114 &1798714922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798714915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 074a6dd21c3942a41add5a374dd6458f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
 --- !u!1 &1968362696
 GameObject:
   m_ObjectHideFlags: 0
