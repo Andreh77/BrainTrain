@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.5
+  offset: 0
   me:
     useTriggers: 0
     useLayerMask: 0
@@ -114,6 +115,7 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
+  rightToEdge: 0
 --- !u!58 &5973526185419691977
 CircleCollider2D:
   m_ObjectHideFlags: 0

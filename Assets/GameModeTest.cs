@@ -7,10 +7,11 @@ public class GameModeTest : MonoBehaviour
     Vector2 dir;
     public float speed = 10f;
     bool hasNewTopDir, hasNewBottomDir, hasNewLeftDir, hasNewRightDir;
-
+    public float offset = 0.5f;
     public ContactFilter2D me;
     float height;
     float width;
+    public bool rightToEdge = false;
     void Start()
     {
         height = Camera.main.orthographicSize * 2;
@@ -26,7 +27,8 @@ public class GameModeTest : MonoBehaviour
     {
         transform.Translate(dir.normalized * speed * Time.deltaTime);
 
-        if(transform.position.y > (height/2) - .5f && !hasNewTopDir)
+
+        if(transform.position.y > (height/2) - offset && !hasNewTopDir)
         {
             dir = ReflectVector(dir, new Vector2(0, 1));
             hasNewTopDir = true;
@@ -35,7 +37,7 @@ public class GameModeTest : MonoBehaviour
             hasNewRightDir = false;
         }     
         
-        if(transform.position.y < -(height / 2) + .5f && !hasNewBottomDir)
+        if(transform.position.y < -(height / 2) + offset && !hasNewBottomDir)
         {
             dir = ReflectVector(dir, new Vector2(0, -1));
             hasNewTopDir = false;
@@ -44,7 +46,7 @@ public class GameModeTest : MonoBehaviour
             hasNewRightDir = false;
         }
         
-        if(transform.position.x > (width / 2) - .5f && !hasNewRightDir) 
+        if(transform.position.x > (width / 2) - offset && !hasNewRightDir) 
         {
             dir = ReflectVector(dir, new Vector2(-1, 0));
             hasNewTopDir = false;
@@ -53,7 +55,7 @@ public class GameModeTest : MonoBehaviour
             hasNewRightDir = true;
         }    
         
-        if(transform.position.x < -(width / 2) + .5f && !hasNewLeftDir)
+        if(transform.position.x < -(width / 2) + offset && !hasNewLeftDir)
         {
             dir = ReflectVector(dir, new Vector2(1, 0));
             hasNewTopDir = false;
