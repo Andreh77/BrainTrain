@@ -23,6 +23,8 @@ public class CircleClicker : GameMode
     public GameObject destroyParticle;
     public GameObject soundEffect;
     public float startPitch = 0.5f;
+    GameObject ballClosestToMouse = null;
+    public List<GameObject> balls = new List<GameObject>();
     private void Start()
     {
         height = Camera.main.orthographicSize * 2;
@@ -34,18 +36,32 @@ public class CircleClicker : GameMode
         timer = new Timer();    
     }
 
+    private void Update()
+    {
+        foreach(GameObject ball in balls)
+        {
+            ball.GetComponent<SpriteRenderer>().color = Color.black;
+            if (ballClosestToMouse == null) { ballClosestToMouse = ball;}
+            
+            if(Vector3.Distance(ballClosestToMouse.transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) > Vector3.Distance(ball.transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)))
+            {
+
+                ballClosestToMouse = ball;
+            }
+        }
+        ballClosestToMouse.GetComponent<SpriteRenderer>().color = Color.white;
+        //Debug.DrawLine(Camera.main.ScreenToWorldPoint(Input.mousePosition), ballClosestToMouse.transform.position, Color.blue);
+    }
     public void CheckClick()
     {
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
         if (hit.collider != null)
         {
+            Destroy(Instantiate(destroyParticle, hit.transform.position, hit.transform.rotation), 2);
+
+            balls.Remove(hit.collider.gameObject);
             Destroy(hit.collider.gameObject);
-
-            GameObject particle = Instantiate(destroyParticle, hit.transform.position, hit.transform.rotation);
-
-            Destroy(particle, 2f);
-
             GameObject sound = Instantiate(soundEffect);
             sound.GetComponent<AudioSource>().pitch = startPitch;
             if (startPitch < 1.5) { startPitch += 0.1f; }
@@ -86,6 +102,7 @@ public class CircleClicker : GameMode
     {
         scoresUI.text += "Attempt " + (level) + " Score: " + scores[scores.Count - 1].ToString("F4") + " seconds \n";
         level++;
+        GetComponent<GameSetup>().CheckIfHighScore(scores[scores.Count - 1]);
         //numberOfBalls = level * 2;
         ballsLeft = numberOfBalls;
         timer.Reset();
@@ -98,6 +115,7 @@ public class CircleClicker : GameMode
         for (int i = 0; i < numberOfBalls; i++)
         {
             GameObject GO = Instantiate(ball);
+            balls.Add(GO);
             GO.transform.position = new Vector3(Random.Range(-(width/ 2) + 1, (width/ 2) - 1), Random.Range(-(height/ 2) + 1, (height/ 2) - 1), 0);
         }
     }

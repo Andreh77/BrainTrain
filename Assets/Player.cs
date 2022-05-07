@@ -25,4 +25,10 @@ public class GameScore
 {
     public string gameName;
     public double score;
+
+    public GameScore(string _gameName, double _score)
+    {
+        gameName = _gameName;
+        score = _score;
+    }
 }

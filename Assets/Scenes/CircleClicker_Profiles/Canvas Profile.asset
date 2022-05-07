@@ -27,7 +27,7 @@ MonoBehaviour:
     value: {x: 0.5, y: 0.5}
   intensity:
     overrideState: 1
-    value: 0.389
+    value: 0.3
   smoothness:
     overrideState: 1
     value: 0.401
@@ -56,7 +56,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6050e2d5de785ce4d931e4dbdbf2d755, type: 3}
   m_Name: ChromaticAberration
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1
@@ -66,10 +66,10 @@ MonoBehaviour:
     defaultState: 1
   intensity:
     overrideState: 1
-    value: 0.11
+    value: 0.05
   fastMode:
-    overrideState: 0
-    value: 1
+    overrideState: 1
+    value: 0
 --- !u!114 &-1275571098047835547
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -91,10 +91,10 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 0.327
+    value: 0.63
   size:
     overrideState: 1
-    value: 1.13
+    value: 0.52
   lumContrib:
     overrideState: 1
     value: 1
@@ -114,3 +114,26 @@ MonoBehaviour:
   - {fileID: -6364718263900232198}
   - {fileID: -6503541661974232799}
   - {fileID: -1275571098047835547}
+  - {fileID: 2031787658476147500}
+--- !u!114 &2031787658476147500
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b94fcd11afffcb142908bfcb1e261fba, type: 3}
+  m_Name: MotionBlur
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  shutterAngle:
+    overrideState: 1
+    value: 360
+  sampleCount:
+    overrideState: 1
+    value: 32

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    public Player currentPlayer;
     private void Start()
     {
         if(instance == null)
@@ -19,14 +20,42 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void CheckIfNewPlayer(string name)
+    {
+        // FILE LOOKUP TO SEE IF PLAYER EXISTS
+        currentPlayer = new Player(name);
+    }
+
     public void loadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }
 
-    public void StoreHighScore()
+    public void TryStoreHighScore(string gameName, double score)
     {
-        // if new score is a record, store it in a file
+        if(currentPlayer.gameScores.Count == 0)
+        {
+            GameScore gScore = new GameScore(gameName, score);
+            currentPlayer.addGameScore(gScore);
+        }
+        else
+        {
+            GameScore lastGameScore = null;
+
+            foreach (GameScore gs in currentPlayer.gameScores)
+            {
+                if (gs.gameName == gameName)
+                {
+                    lastGameScore = gs;
+                    break;
+                }
+            }
+
+            if(lastGameScore.score < score) return; // IF PLAYERS LAST SCORE IS BETTER WE DONT WANT TO CHANGE IT
+
+            lastGameScore.score = score; // UPDATE SCORE
+        }
+
     }
 
     public void RetrieveHighScore()
