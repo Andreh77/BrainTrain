@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class HighScoreManager : MonoBehaviour
 {
-
     private static HighScoreManager m_instance;
     private const int LeaderboardLength = 10;
 
