@@ -24,6 +24,7 @@ public class CircleClicker : GameMode
     public GameObject soundEffect;
     public float startPitch = 0.5f;
     GameObject ballClosestToMouse = null;
+    public GameObject pauseMenu;
     public List<GameObject> balls = new List<GameObject>();
     private void Start()
     {
@@ -38,6 +39,17 @@ public class CircleClicker : GameMode
 
     private void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Escape) && !pauseMenu.activeSelf)
+        {
+            Time.timeScale = 0f;
+            pauseMenu.SetActive(true);
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && pauseMenu.activeSelf)
+        {
+            Time.timeScale = 1f;
+            pauseMenu.SetActive(false);
+        }
+
         foreach(GameObject ball in balls)
         {
             ball.GetComponent<SpriteRenderer>().color = Color.black;
@@ -45,15 +57,15 @@ public class CircleClicker : GameMode
             
             if(Vector3.Distance(ballClosestToMouse.transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) > Vector3.Distance(ball.transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)))
             {
-
                 ballClosestToMouse = ball;
             }
         }
-        ballClosestToMouse.GetComponent<SpriteRenderer>().color = Color.white;
-        //Debug.DrawLine(Camera.main.ScreenToWorldPoint(Input.mousePosition), ballClosestToMouse.transform.position, Color.blue);
+        //ballClosestToMouse.GetComponent<SpriteRenderer>().color = Color.white;
+        Debug.DrawLine(Camera.main.ScreenToWorldPoint(Input.mousePosition), ballClosestToMouse.transform.position, Color.blue);
     }
     public void CheckClick()
     {
+        
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
         if (hit.collider != null)
@@ -73,12 +85,13 @@ public class CircleClicker : GameMode
     }
     private void LateUpdate()
     {
-        if(!paused && Input.GetKeyDown(KeyCode.Mouse0))
+        if (pauseMenu.activeSelf) { return; }
+        if (!paused && Input.GetKeyDown(KeyCode.Mouse0))
         {
             CheckClick();
         }
 
-        if(!timer.running && Input.GetKeyDown(KeyCode.Mouse0))
+        if (!timer.running && Input.GetKeyDown(KeyCode.Mouse0))
         {
             startUI.SetActive(false);
             timer.Start();
@@ -100,7 +113,7 @@ public class CircleClicker : GameMode
 
     public void NextLevel()
     {
-        scoresUI.text += "Attempt " + (level) + " Score: " + scores[scores.Count - 1].ToString("F4") + " seconds \n";
+        scoresUI.text += "[Attempt " + (level) + "(" + scores[scores.Count - 1].ToString("F4") + " seconds)] \n";
         level++;
         GetComponent<GameSetup>().CheckIfHighScore(scores[scores.Count - 1]);
         //numberOfBalls = level * 2;

@@ -28,7 +28,8 @@ public class GameManager : MonoBehaviour
 
     public void loadScene(string sceneName)
     {
-        SceneManager.LoadScene(sceneName);
+        if(Time.timeScale != 1) { Time.timeScale = 1; }
+        SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
 
     public void TryStoreHighScore(string gameName, double score)

@@ -15,7 +15,7 @@ public class MainMenuManager : MonoBehaviour
 
     public TMP_InputField nameEntry;
     public GameManager gameManager;
-
+    public GameObject mouseClick;
     public GameObject ball;
     //public List<GameObject> effectBalls = new List<GameObject>();
     public int numberOfBalls = 1000;
@@ -29,6 +29,13 @@ public class MainMenuManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Instantiate(mouseClick, Camera.main.ScreenToWorldPoint(Input.mousePosition) , Quaternion.identity);
+        }
+    }
     public void SetupPlayer()
     {
         string name = nameEntry.text;
