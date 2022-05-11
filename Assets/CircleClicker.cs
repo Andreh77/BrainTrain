@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.EventSystems;
+
 public class CircleClicker : GameMode
 {
     public GameObject startUI;
@@ -24,8 +26,9 @@ public class CircleClicker : GameMode
     public GameObject soundEffect;
     public float startPitch = 0.5f;
     GameObject ballClosestToMouse = null;
-    public GameObject pauseMenu;
     public List<GameObject> balls = new List<GameObject>();
+    public bool canPlay = true;
+
     private void Start()
     {
         height = Camera.main.orthographicSize * 2;
@@ -37,19 +40,18 @@ public class CircleClicker : GameMode
         timer = new Timer();    
     }
 
+    public void MouseOverUI(BaseEventData data)
+    {
+        canPlay = false;
+    }
+
+    public void MouseOffUI(BaseEventData data)
+    {
+        canPlay = true;
+    }
+
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape) && !pauseMenu.activeSelf)
-        {
-            Time.timeScale = 0f;
-            pauseMenu.SetActive(true);
-        }
-        else if (Input.GetKeyDown(KeyCode.Escape) && pauseMenu.activeSelf)
-        {
-            Time.timeScale = 1f;
-            pauseMenu.SetActive(false);
-        }
-
         foreach(GameObject ball in balls)
         {
             ball.GetComponent<SpriteRenderer>().color = Color.black;
@@ -65,7 +67,6 @@ public class CircleClicker : GameMode
     }
     public void CheckClick()
     {
-        
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
         if (hit.collider != null)
@@ -85,8 +86,9 @@ public class CircleClicker : GameMode
     }
     private void LateUpdate()
     {
-        if (pauseMenu.activeSelf) { return; }
-        if (!paused && Input.GetKeyDown(KeyCode.Mouse0))
+        if (!canPlay) return;
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             CheckClick();
         }

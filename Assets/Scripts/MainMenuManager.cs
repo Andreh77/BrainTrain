@@ -17,7 +17,7 @@ public class MainMenuManager : MonoBehaviour
     public GameManager gameManager;
     public GameObject mouseClick;
     public GameObject ball;
-    //public List<GameObject> effectBalls = new List<GameObject>();
+
     public int numberOfBalls = 1000;
 
     private void Start()
