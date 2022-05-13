@@ -23,7 +23,7 @@ public class Movement : MonoBehaviour
     {
         if (transform.position.y > (height / 2) - offset && !hasNewTopDir)
         {
-            dir = ReflectVector(dir, new Vector2(0, 1));
+            dir = Vector2.Reflect(dir, new Vector2(0, 1));
             hasNewTopDir = true;
             hasNewBottomDir = false;
             hasNewLeftDir = false;
@@ -31,7 +31,7 @@ public class Movement : MonoBehaviour
         }
         else if (transform.position.y < -(height / 2) + offset && !hasNewBottomDir)
         {
-            dir = ReflectVector(dir, new Vector2(0, -1));
+            dir = Vector2.Reflect(dir, new Vector2(0, -1));
             hasNewTopDir = false;
             hasNewBottomDir = true;
             hasNewLeftDir = false;
@@ -39,7 +39,7 @@ public class Movement : MonoBehaviour
         }
         else if (transform.position.x > (width / 2) - offset && !hasNewRightDir)
         {
-            dir = ReflectVector(dir, new Vector2(-1, 0));
+            dir = Vector2.Reflect(dir, new Vector2(-1, 0));
             hasNewTopDir = false;
             hasNewBottomDir = false;
             hasNewLeftDir = false;
@@ -47,7 +47,7 @@ public class Movement : MonoBehaviour
         }
         else if (transform.position.x < -(width / 2) + offset && !hasNewLeftDir)
         {
-            dir = ReflectVector(dir, new Vector2(1, 0));
+            dir = Vector2.Reflect(dir, new Vector2(1, 0));
             hasNewTopDir = false;
             hasNewBottomDir = false;
             hasNewLeftDir = true;
