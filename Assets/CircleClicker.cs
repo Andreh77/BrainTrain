@@ -22,6 +22,10 @@ public class CircleClicker : GameMode
 
     float height;
     float width;
+    [Range(0.0f, 1.0f)]
+    public float spread = 1;
+    public float speed = 1;
+    public float scale = 1;
     public GameObject destroyParticle;
     public GameObject soundEffect;
     public float startPitch = 0.5f;
@@ -131,7 +135,9 @@ public class CircleClicker : GameMode
         {
             GameObject GO = Instantiate(ball);
             balls.Add(GO);
-            GO.transform.position = new Vector3(Random.Range(-(width/ 2) + 1, (width/ 2) - 1), Random.Range(-(height/ 2) + 1, (height/ 2) - 1), 0);
+            GO.transform.localScale = new Vector2(scale, scale);
+            GO.GetComponent<Movement>().speed = speed;
+            GO.transform.position = new Vector3(Random.Range((-(width/ 2) + 1) * spread, ((width/ 2) - 1)) * spread, Random.Range((-(height/ 2) + 1) * spread, ((height/ 2) - 1)) * spread, 0);
         }
     }
 }

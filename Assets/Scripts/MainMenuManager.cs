@@ -20,8 +20,11 @@ public class MainMenuManager : MonoBehaviour
 
     public int numberOfBalls = 1000;
 
+    public Animation anim;
+
+
     private void Start()
-    {
+    {     
         gameManager = GameManager.instance;
         for (int i = 0; i < numberOfBalls; i++)
         {
@@ -31,7 +34,7 @@ public class MainMenuManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             Destroy(Instantiate(mouseClick, Camera.main.ScreenToWorldPoint(Input.mousePosition) , Quaternion.identity), 2);
         }

@@ -599,7 +599,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 274.5, y: 35.700012}
+  m_AnchoredPosition: {x: 274.5, y: 35.69995}
   m_SizeDelta: {x: 520.27, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &384181010
@@ -624,7 +624,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Instructions
 
-    -Click on all the moving circles as fast as possible.
+    -Click the screen 10 time''s as fast as possible.
 
 '
   m_isRightToLeft: 0
@@ -1031,8 +1031,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 227.94, y: 0}
-  m_SizeDelta: {x: 455.89, y: 50}
+  m_AnchoredPosition: {x: 150, y: 0}
+  m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &779505084
 MonoBehaviour:
@@ -1054,7 +1054,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Moving Circle Clicker
+  m_text: Click Speed
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1456,7 +1456,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: click on a circle to start!
+  m_text: click to start!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1731,7 +1731,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.47843137, b: 0.47843137, a: 1}
+  m_Color: {r: 0, g: 0.22547199, b: 0.47843137, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2161,9 +2161,9 @@ MonoBehaviour:
   scores: []
   ball: {fileID: 8094948900534731627, guid: ed1694b67a2c42c4e950cfd06367a03b, type: 3}
   level: 1
-  spread: 1
-  speed: 1
-  scale: 1
+  spread: 0
+  speed: 0
+  scale: 50
   destroyParticle: {fileID: 1880605621743287380, guid: d10b002561a880849b6a23b52ce481d1, type: 3}
   soundEffect: {fileID: 8467337781951968253, guid: f6715c510f7b686478f7b9ba73655237, type: 3}
   startPitch: 0.5
