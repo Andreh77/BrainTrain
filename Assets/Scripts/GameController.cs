@@ -13,7 +13,7 @@ public class GameController : MonoBehaviour
 
     [SerializeField] private FlashCards startObject;
     [SerializeField] private Sprite[] images;
-
+    public Timer timer;
     private int[] Randomiser(int[] locations)
     {
         int[] array = locations.Clone() as int[];
@@ -29,6 +29,7 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
+        timer = new Timer();
         int[] locations = { 0, 0, 1, 1, 2, 2, 3, 3 };
         locations = Randomiser(locations);
 
@@ -58,6 +59,7 @@ public class GameController : MonoBehaviour
                 gameImage.transform.position = new Vector3(positionX, positionY, startPosition.z);
             }
         }
+        timer.Start();
     }
 
     private FlashCards firstOpen;
@@ -92,7 +94,7 @@ public class GameController : MonoBehaviour
         if (firstOpen.spriteId == secondOpen.spriteId)
         {
             score++;
-            scoreText.text = "Score: " + score;
+            scoreText.text = "Score: " + timer.Stop().ToString();
         }
         else 
         {
