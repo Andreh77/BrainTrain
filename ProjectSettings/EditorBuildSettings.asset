@@ -15,9 +15,12 @@ EditorBuildSettings:
     path: Assets/Scenes/CircleClicker.unity
     guid: 0786d5d3be6694e4da860cfe147ca18f
   - enabled: 1
+<<<<<<< Updated upstream
     path: Assets/Scenes/FlashCards.unity
     guid: 7a29c880322f9394aa953bc4337b8167
   - enabled: 1
+=======
+>>>>>>> Stashed changes
     path: Assets/Scenes/SpeedClicker.unity
     guid: b5d00843243c3f04f929380616aaafa0
   m_configObjects: {}
