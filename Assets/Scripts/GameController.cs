@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
@@ -27,9 +28,15 @@ public class GameController : MonoBehaviour
         return array;
     }
 
+    private void Awake() 
+    {
+        audioManager = FindObjectOfType<AudioManager>();
+    }
+
     private void Start()
     {
         timer = new Timer();
+        attemptsText.color = attemptGrad.Evaluate(0f);
         int[] locations = { 0, 0, 1, 1, 2, 2, 3, 3 };
         locations = Randomiser(locations);
 
@@ -64,12 +71,13 @@ public class GameController : MonoBehaviour
 
     private FlashCards firstOpen;
     private FlashCards secondOpen;
+    private AudioManager audioManager;
 
     private int score = 0;
     private int attempts = 0;
 
-    [SerializeField] private TextMesh scoreText;
-    [SerializeField] private TextMesh attemptsText;
+    [SerializeField] private TextMeshProUGUI scoreText, attemptsText, timerText;
+    [SerializeField] private Gradient attemptGrad;
 
     public bool canOpen
     {
@@ -94,7 +102,9 @@ public class GameController : MonoBehaviour
         if (firstOpen.spriteId == secondOpen.spriteId)
         {
             score++;
-            scoreText.text = "Score: " + timer.Stop().ToString();
+            audioManager.Play("Score");
+            timerText.text = "Time: " + Mathf.Round((float) timer.Stop()).ToString() + "s";
+            scoreText.text = "Score: " + score.ToString();
         }
         else 
         {
@@ -106,6 +116,7 @@ public class GameController : MonoBehaviour
 
         attempts++;
         attemptsText.text = "Attempts: " + attempts;
+        attemptsText.color = attemptGrad.Evaluate(attempts * 0.1f);
 
         firstOpen = null;
         secondOpen = null;
@@ -113,6 +124,7 @@ public class GameController : MonoBehaviour
 
     public void Restart()
     {
+        audioManager.Play("Decline");
         SceneManager.LoadScene("FlashCards");
     }
 }

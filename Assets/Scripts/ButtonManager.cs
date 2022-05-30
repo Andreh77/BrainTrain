@@ -8,13 +8,19 @@ public class ButtonManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 {
     public bool select;
     public List<Image> buttonImages = new List<Image>();
+    private AudioManager audioManager;
     public MainMenuManager mainMenuManager;
     public GameObject panel;
 
+    private void Awake() 
+    {
+        audioManager = FindObjectOfType<AudioManager>();
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (mainMenuManager.selectedButton != null) { mainMenuManager.selectedButton.ChangeImageColour(mainMenuManager.normal); mainMenuManager.selectedButton.panel.SetActive(false); }
-        if (mainMenuManager.selectedButton != this) { mainMenuManager.clickButtonSound.Play(); }
+        if (mainMenuManager.selectedButton != null) mainMenuManager.selectedButton.ChangeImageColour(mainMenuManager.normal); mainMenuManager.selectedButton.panel.SetActive(false);
+        if (mainMenuManager.selectedButton != this) audioManager.Play("ButtonClick");
         mainMenuManager.selectedButton = this;
 
         ChangeImageColour(mainMenuManager.background);
@@ -27,7 +33,7 @@ public class ButtonManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         {
             if (mainMenuManager.selectedButton != this)
             {
-                mainMenuManager.overButtonSound.Play();
+                audioManager.Play("ButtonOver");
             }
         }
         

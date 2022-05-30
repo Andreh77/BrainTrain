@@ -6,6 +6,12 @@ public class FlashCards : MonoBehaviour
 {
     [SerializeField] private GameObject Hidden;
     [SerializeField] private GameController gameController;
+    private AudioManager audioManager;
+
+    private void Awake() 
+    {
+        audioManager = FindObjectOfType<AudioManager>();
+    }
 
     public void OnMouseDown()
     {
@@ -13,6 +19,7 @@ public class FlashCards : MonoBehaviour
         {
             Hidden.SetActive(false);
             gameController.imageOpened(this);
+            audioManager.Play("Tick");
         }
     }
 
@@ -31,5 +38,6 @@ public class FlashCards : MonoBehaviour
     public void Close()
     {
         Hidden.SetActive(true);
+        audioManager.Play("Decline");
     }
 }

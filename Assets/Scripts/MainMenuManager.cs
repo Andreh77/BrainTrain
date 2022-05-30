@@ -15,8 +15,7 @@ public class MainMenuManager : MonoBehaviour
 
     public TMP_InputField nameEntry;
     public GameManager gameManager;
-    public GameObject mouseClick;
-    public GameObject ball;
+    public GameObject mouseClick, ball;
 
     public int numberOfBalls = 1000;
 
@@ -26,17 +25,18 @@ public class MainMenuManager : MonoBehaviour
     private void Start()
     {     
         gameManager = GameManager.instance;
-        for (int i = 0; i < numberOfBalls; i++)
-        {
-            Instantiate(ball);
-        }
+        // for (int i = 0; i < numberOfBalls; i++)
+        // {
+        //     Instantiate(ball);
+        // }
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetMouseButtonDown(0))
         {
-            Destroy(Instantiate(mouseClick, Camera.main.ScreenToWorldPoint(Input.mousePosition) , Quaternion.identity), 2);
+            GameObject mouseClickInst = Instantiate(mouseClick, Camera.main.ScreenToWorldPoint(Input.mousePosition) , Quaternion.identity);
+            Destroy(mouseClickInst, 0.5f);
         }
     }
     public void SetupPlayer()
