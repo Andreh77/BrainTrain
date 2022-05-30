@@ -478,7 +478,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7915768806bb7f045ab579d45eb17cbf, type: 3}
   - {fileID: 21300000, guid: d1fb23905177b4e4c8a4cd688618af47, type: 3}
   - {fileID: 21300000, guid: 86fdd8df5ed5d074aa3b15453c5b6f48, type: 3}
-  scores: []
   scoreText: {fileID: 735038734}
   attemptsText: {fileID: 54473434}
   timerText: {fileID: 1807917833}
@@ -2147,7 +2146,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 607507158}
   m_HandleRect: {fileID: 607507157}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -3243,7 +3242,7 @@ MonoBehaviour:
   m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
