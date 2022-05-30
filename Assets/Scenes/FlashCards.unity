@@ -478,9 +478,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7915768806bb7f045ab579d45eb17cbf, type: 3}
   - {fileID: 21300000, guid: d1fb23905177b4e4c8a4cd688618af47, type: 3}
   - {fileID: 21300000, guid: 86fdd8df5ed5d074aa3b15453c5b6f48, type: 3}
+  scores: []
   scoreText: {fileID: 735038734}
   attemptsText: {fileID: 54473434}
   timerText: {fileID: 1807917833}
+  scoresUI: {fileID: 2142602765}
   attemptGrad:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}
@@ -2223,7 +2225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
-  gameName: ' '
+  gameName: FlashCards
 --- !u!114 &1437147576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3212,7 +3214,7 @@ GameObject:
   - component: {fileID: 2142602765}
   - component: {fileID: 2142602766}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: ScoresUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

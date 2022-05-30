@@ -76,7 +76,7 @@ public class GameController : MonoBehaviour
     private int score = 0;
     private int attempts = 0;
 
-    [SerializeField] private TextMeshProUGUI scoreText, attemptsText, timerText;
+    [SerializeField] private TextMeshProUGUI scoreText, attemptsText, timerText, scoresUI;
     [SerializeField] private Gradient attemptGrad;
 
     public bool canOpen
@@ -120,11 +120,20 @@ public class GameController : MonoBehaviour
 
         firstOpen = null;
         secondOpen = null;
+
+        if (score >= 4)
+        {
+            GameManager gameManager = FindObjectOfType<GameManager>();
+            gameManager.TryStoreHighScore(SceneManager.GetActiveScene().name, score);
+            PlayerPrefs.SetString("scoreText", PlayerPrefs.GetString("scoreText") + "[Attempt " + (PlayerPrefs.GetInt("FCAttempt", 0)) + " (" + Mathf.Round((float) timer.Stop()).ToString() + "s, " + attempts +" guesses)] \n");
+            scoresUI.text = PlayerPrefs.GetString("scoreText");
+        } 
     }
 
     public void Restart()
     {
         audioManager.Play("Decline");
+        PlayerPrefs.SetInt("FCAttempt", PlayerPrefs.GetInt("FCAttempt", -1) + 1);
         SceneManager.LoadScene("FlashCards");
     }
 }

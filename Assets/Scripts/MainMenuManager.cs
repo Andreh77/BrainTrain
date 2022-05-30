@@ -87,6 +87,11 @@ public class MainMenuManager : MonoBehaviour
 
     public void LoadScene(string name)
     {
+        if (name == "FlashCards")
+        {
+            PlayerPrefs.SetInt("FCAttempt", 1);
+            PlayerPrefs.SetString("scoreText", "");
+        } 
         SceneManager.LoadScene(name);
     }
 }
