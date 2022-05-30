@@ -10,16 +10,18 @@ public class MainMenuManager : MonoBehaviour
 {
     public Color normal, header, background;
     public ButtonManager selectedButton;
-    public AudioSource overButtonSound;
-    public AudioSource clickButtonSound;
 
     public TMP_InputField nameEntry;
+    private AudioManager audioManager;
     public GameManager gameManager;
     public GameObject mouseClick, ball;
 
     public int numberOfBalls = 1000;
 
     public Animation anim;
+
+    [SerializeField] private Image pause;
+    private TextMeshProUGUI pauseText;
 
 
     private void Start()
@@ -29,6 +31,9 @@ public class MainMenuManager : MonoBehaviour
         // {
         //     Instantiate(ball);
         // }
+
+        audioManager = FindObjectOfType<AudioManager>();
+        pauseText = pause.GetComponentInChildren<TextMeshProUGUI>();
     }
 
     private void Update()
@@ -38,11 +43,41 @@ public class MainMenuManager : MonoBehaviour
             GameObject mouseClickInst = Instantiate(mouseClick, Camera.main.ScreenToWorldPoint(Input.mousePosition) , Quaternion.identity);
             Destroy(mouseClickInst, 0.5f);
         }
+
+        pauseText.text = (PlayerPrefs.GetInt("musicPaused", 0) == 0) ? "Pause Music" : "Play Music";
     }
     public void SetupPlayer()
     {
         string name = nameEntry.text;
         gameManager.CheckIfNewPlayer(name);
+    }
+
+    public void MusicToggle()
+    {
+        if (PlayerPrefs.GetInt("musicPaused", 0) == 0)
+        {
+            audioManager.Play("Stop");
+            PauseBGM();
+            PlayerPrefs.SetInt("musicPaused", 1);
+        }
+        else
+        {
+            audioManager.Play("Start");
+            PlayBGM();
+            PlayerPrefs.SetInt("musicPaused", 0);
+        }
+    }
+
+    public void PauseBGM()
+    {
+        GameObject bgmObj = GameObject.FindGameObjectWithTag("Music");
+        if (bgmObj != null) bgmObj.GetComponent<AudioSource>().Pause();
+    }
+
+    public void PlayBGM()
+    {
+        GameObject bgmObj = GameObject.FindGameObjectWithTag("Music");
+        if (bgmObj != null) bgmObj.GetComponent<AudioSource>().Play();
     }
 
     public void Quit()

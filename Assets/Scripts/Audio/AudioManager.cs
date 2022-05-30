@@ -47,6 +47,17 @@ public class AudioManager : MonoBehaviour
        if (s.flagged && !isSFXPlaying) StartCoroutine(SFXCheck());
     }
 
+    public void Pause(string name)
+    {
+       Sound s = Array.Find(sounds, sound => sound.soundName == name);
+       if (s == null)
+       {
+           Debug.LogWarning("Sound label " + name + " could not be paused. File not found. Check spelling or capitalization.");
+           return;
+       }
+       s.source.Pause();
+    }
+
     IEnumerator SFXCheck()
     {
         isSFXPlaying = true;
