@@ -511,6 +511,35 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
+  timerGrad:
+    serializedVersion: 2
+    key0: {r: 0.64958084, g: 1, b: 0.64705884, a: 1}
+    key1: {r: 1, g: 0.64705884, b: 0.64705884, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 26214
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
 --- !u!4 &204126087
 Transform:
   m_ObjectHideFlags: 0
@@ -2146,7 +2175,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 607507158}
   m_HandleRect: {fileID: 607507157}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2363,6 +2392,13 @@ MonoBehaviour:
     flagged: 0
   - soundName: Tick2
     clip: {fileID: 8300000, guid: c4756cd639c2ea44e8458cdef662ec4b, type: 3}
+    volume: 0.5
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+    flagged: 0
+  - soundName: Select
+    clip: {fileID: 8300000, guid: c6ec0cadaba761149b31e3febf4111d1, type: 3}
     volume: 0.5
     pitch: 1
     source: {fileID: 0}
@@ -3241,8 +3277,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0f097aa7bb73c514a8141af2a71fae69, type: 2}
+  m_sharedMaterial: {fileID: 3014043008965580557, guid: 0f097aa7bb73c514a8141af2a71fae69, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3272,7 +3308,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535

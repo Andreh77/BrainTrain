@@ -66,6 +66,7 @@ public class GameController : MonoBehaviour
                 gameImage.transform.position = new Vector3(positionX, positionY, startPosition.z);
             }
         }
+
         timer.Start();
     }
 
@@ -77,11 +78,20 @@ public class GameController : MonoBehaviour
     private int attempts = 0;
 
     [SerializeField] private TextMeshProUGUI scoreText, attemptsText, timerText, scoresUI;
-    [SerializeField] private Gradient attemptGrad;
+    [SerializeField] private Gradient attemptGrad, timerGrad;
 
     public bool canOpen
     {
         get { return secondOpen == null; }
+    }
+
+    private void Update() 
+    {
+        if (score < 4)
+        {
+            timerText.text = "Time: " + Mathf.Round((float) timer.Stop()).ToString() + "s";
+            timerText.color = timerGrad.Evaluate((float) timer.Stop() * 0.1f);
+        } 
     }
 
     public void imageOpened(FlashCards startObject)
@@ -103,7 +113,7 @@ public class GameController : MonoBehaviour
         {
             score++;
             audioManager.Play("Score");
-            timerText.text = "Time: " + Mathf.Round((float) timer.Stop()).ToString() + "s";
+            // timerText.text = "Time: " + Mathf.Round((float) timer.Stop()).ToString() + "s";
             scoreText.text = "Score: " + score.ToString();
         }
         else 
@@ -124,6 +134,7 @@ public class GameController : MonoBehaviour
         if (score >= 4)
         {
             GameManager gameManager = FindObjectOfType<GameManager>();
+            audioManager.Play("Select");
             gameManager.TryStoreHighScore(SceneManager.GetActiveScene().name, score);
             PlayerPrefs.SetString("scoreText", PlayerPrefs.GetString("scoreText") + "[Attempt " + (PlayerPrefs.GetInt("FCAttempt", 0)) + " (" + Mathf.Round((float) timer.Stop()).ToString() + "s, " + attempts +" guesses)] \n");
             scoresUI.text = PlayerPrefs.GetString("scoreText");
