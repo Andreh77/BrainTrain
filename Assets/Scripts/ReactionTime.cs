@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine;
 
@@ -7,10 +8,12 @@ public class ReactionTime : MonoBehaviour
 {
     [SerializeField] private Color greenColor, redColor, blueColor, yellowColor;
     [SerializeField] private Canvas pause;
-    [SerializeField] private TextMeshProUGUI promptText;
+    [SerializeField] private TextMeshProUGUI promptText, scoresUI, timeText;
     [SerializeField] private float startTime, endTime, maxTimeAllowed;
+    [HideInInspector] public bool touchingUI;
 
     private AudioManager audioManager;
+    private GameManager gameManager;
     private SpriteRenderer background;
     private IEnumerator flicker, playerAction;
 
@@ -20,9 +23,10 @@ public class ReactionTime : MonoBehaviour
 
     private GameState gameState;
     private PlayerDelay playerDelay;
+    private Timer timer;
 
     private bool showMenu;
-    public bool touchingUI;
+    private float score;
 
     public void SetTouchTrue()
     {
@@ -38,6 +42,7 @@ public class ReactionTime : MonoBehaviour
     void Start()
     {
         audioManager = FindObjectOfType<AudioManager>();
+        gameManager = FindObjectOfType<GameManager>();
         touchingUI = false;
         background = GetComponent<SpriteRenderer>();
         gameState = GameState.yellow;
@@ -75,12 +80,17 @@ public class ReactionTime : MonoBehaviour
             case GameState.blue:
                 if (playerDelay == PlayerDelay.early) promptText.text = "Too early..";
                 else if (playerDelay == PlayerDelay.late) promptText.text = "Too late..";
-                else promptText.text = "Perfect!";
+                else
+                {
+                    promptText.text = "Perfect!";
+                    timeText.enabled = true;
+                } 
                 
                 background.color = blueColor;
                 break;
             case GameState.yellow:
                 showMenu = true;
+                timeText.enabled = false;
                 promptText.text = (Input.GetMouseButton(0) && !touchingUI) ? "Release when ready." : "HOLD LEFT CLICK TO BEGIN";
                 
                 background.color = yellowColor;
@@ -93,9 +103,8 @@ public class ReactionTime : MonoBehaviour
     {
         audioManager.Play("Hold");
         yield return new WaitUntil(() => Input.GetMouseButtonUp(0));
-        // StartCoroutine(PlayerAction());
-
         if (playerAction != null) StopCoroutine(playerAction);
+        
         playerAction = PlayerAction();
         StartCoroutine(playerAction);
         
@@ -103,15 +112,22 @@ public class ReactionTime : MonoBehaviour
         gameState = GameState.red;
         
         yield return new WaitForSeconds(Random.Range(startTime, endTime));
+        
+        timer = new Timer();
+        timer.Start();
+        
         audioManager.Play("Green");
         gameState = GameState.green;
 
-        yield return new WaitForSeconds(maxTimeAllowed);
-        audioManager.Play("Drum Roll");
-        playerDelay = PlayerDelay.late;
-        gameState = GameState.blue;
+        if (maxTimeAllowed > 0)
+        {
+            yield return new WaitForSeconds(maxTimeAllowed);
+            audioManager.Play("Drum Roll");
+            playerDelay = PlayerDelay.late;
+            gameState = GameState.blue;
 
-        StartCoroutine(Repeat());
+            StartCoroutine(Repeat());
+        }
     }
 
     // Checks to see if player clicks too early, too late or right on time.
@@ -120,7 +136,9 @@ public class ReactionTime : MonoBehaviour
         yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
     
         StopCoroutine(flicker);
+        score = (Mathf.Ceil((float)timer.Stop() * 1000));
         playerDelay = (gameState == GameState.red) ? PlayerDelay.early : PlayerDelay.perfect;
+        
         if (playerDelay == PlayerDelay.perfect) audioManager.Play("IdkLolz"); 
         else if (playerDelay == PlayerDelay.early) audioManager.Play("Clack");
         gameState = GameState.blue;
@@ -134,11 +152,22 @@ public class ReactionTime : MonoBehaviour
     {
         StopCoroutine(flicker);
         StopCoroutine(playerAction);
+        timeText.text = "(" + score.ToString() + " ms)";
         yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
         
         yield return new WaitUntil(() => Input.GetMouseButtonUp(0));
         StopAllCoroutines();
         audioManager.Play("Accept");
         gameState = GameState.yellow;
+        SetScoreText();
+        
+    }
+
+    void SetScoreText()
+    {
+        gameManager.TryStoreHighScore(SceneManager.GetActiveScene().name, 2);
+        PlayerPrefs.SetString("reflexText", PlayerPrefs.GetString("reflexText") + "[Attempt " + (PlayerPrefs.GetInt("RTAttempt", 0)) + " (" + score.ToString() + " ms" + ")] \n");
+        scoresUI.text = PlayerPrefs.GetString("reflexText");
+        PlayerPrefs.SetInt("RTAttempt", PlayerPrefs.GetInt("RTAttempt", -1) + 1);
     }
 }

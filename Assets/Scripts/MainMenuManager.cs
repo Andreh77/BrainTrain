@@ -91,6 +91,11 @@ public class MainMenuManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("FCAttempt", 1);
             PlayerPrefs.SetString("scoreText", "");
+        }
+        else if (name == "ReactionTime")
+        {
+            PlayerPrefs.SetInt("RTAttempt", 1);
+            PlayerPrefs.SetString("reflexText", "");
         } 
         SceneManager.LoadScene(name);
     }
