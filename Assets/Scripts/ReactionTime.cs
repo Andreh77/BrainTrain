@@ -9,7 +9,7 @@ public class ReactionTime : MonoBehaviour
     [SerializeField] private Color greenColor, redColor, blueColor, yellowColor;
     [SerializeField] private Canvas pause;
     [SerializeField] private TextMeshProUGUI promptText, scoresUI, timeText;
-    [SerializeField] private float startTime, endTime, maxTimeAllowed;
+    [SerializeField] private float startTime, endTime, maxTimeAllowed; // Set maxTImeAllowed to 0 to remove the time limit
     [HideInInspector] public bool touchingUI;
 
     private AudioManager audioManager;
@@ -20,6 +20,7 @@ public class ReactionTime : MonoBehaviour
     private enum PlayerDelay { early, perfect, late }
 
     private enum GameState { red, green, blue, yellow}
+    private string[] textLines = {"Perfect!", "Nice One!", "Flawless!", "Superb!", "Supercalifragilisticexpialidocious!", "Sweet!", "Good Job!", "Fantastic!"};
 
     private GameState gameState;
     private PlayerDelay playerDelay;
@@ -43,9 +44,10 @@ public class ReactionTime : MonoBehaviour
     {
         audioManager = FindObjectOfType<AudioManager>();
         gameManager = FindObjectOfType<GameManager>();
-        touchingUI = false;
         background = GetComponent<SpriteRenderer>();
+        
         gameState = GameState.yellow;
+        touchingUI = false;
     }
 
     // Update is called once per frame
@@ -82,7 +84,6 @@ public class ReactionTime : MonoBehaviour
                 else if (playerDelay == PlayerDelay.late) promptText.text = "Too late..";
                 else
                 {
-                    promptText.text = "Perfect!";
                     timeText.enabled = true;
                 } 
                 
@@ -139,7 +140,11 @@ public class ReactionTime : MonoBehaviour
         score = (Mathf.Ceil((float)timer.Stop() * 1000));
         playerDelay = (gameState == GameState.red) ? PlayerDelay.early : PlayerDelay.perfect;
         
-        if (playerDelay == PlayerDelay.perfect) audioManager.Play("IdkLolz"); 
+        if (playerDelay == PlayerDelay.perfect)
+        {
+            audioManager.Play("IdkLolz"); 
+            promptText.text = textLines[Random.Range(0, textLines.Length)];
+        } 
         else if (playerDelay == PlayerDelay.early) audioManager.Play("Clack");
         gameState = GameState.blue;
 
@@ -169,5 +174,7 @@ public class ReactionTime : MonoBehaviour
         PlayerPrefs.SetString("reflexText", PlayerPrefs.GetString("reflexText") + "[Attempt " + (PlayerPrefs.GetInt("RTAttempt", 0)) + " (" + score.ToString() + " ms" + ")] \n");
         scoresUI.text = PlayerPrefs.GetString("reflexText");
         PlayerPrefs.SetInt("RTAttempt", PlayerPrefs.GetInt("RTAttempt", -1) + 1);
+
+        StatsData.reactionTimeScore.Add(score);
     }
 }
