@@ -162,9 +162,10 @@ public class ReactionTime : MonoBehaviour
         
         yield return new WaitUntil(() => Input.GetMouseButtonUp(0));
         StopAllCoroutines();
+        
         audioManager.Play("Accept");
         gameState = GameState.yellow;
-        SetScoreText();
+        if (playerDelay == PlayerDelay.perfect) SetScoreText();
         
     }
 

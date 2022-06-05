@@ -42,10 +42,6 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
 
-    private void Update() {
-        Debug.Log(StatsData.flashCardsScore.Count);
-    }
-
     public void TryStoreHighScore(string gameName, double score)
     {
         if(currentPlayer.gameScores.Count == 0)
