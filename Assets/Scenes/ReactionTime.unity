@@ -967,7 +967,7 @@ MonoBehaviour:
   timeText: {fileID: 1626848839}
   startTime: 1
   endTime: 5
-  maxTimeAllowed: 1
+  maxTimeAllowed: 0
   touchingUI: 0
 --- !u!1 &557966769
 GameObject:
