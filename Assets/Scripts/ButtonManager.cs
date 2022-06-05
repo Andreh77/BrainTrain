@@ -11,6 +11,7 @@ public class ButtonManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     private AudioManager audioManager;
     public MainMenuManager mainMenuManager;
     public GameObject panel;
+    public GameObject text;
 
     private void Awake() 
     {
@@ -19,11 +20,21 @@ public class ButtonManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (mainMenuManager.selectedButton != null) mainMenuManager.selectedButton.ChangeImageColour(mainMenuManager.normal); mainMenuManager.selectedButton.panel.SetActive(false);
+        if (mainMenuManager.selectedButton != null) { 
+            mainMenuManager.selectedButton.ChangeImageColour(mainMenuManager.normal); 
+            mainMenuManager.selectedButton.panel.SetActive(false);
+            TMPro.TextMeshProUGUI txt1 = mainMenuManager.selectedButton.text.GetComponent<TMPro.TextMeshProUGUI>();
+            txt1.color = Color.white; 
+            //Component[] cpt =mainMenuManager.selectedButton.text.GetComponents<Component>();//.color=mainMenuManager.background;
+            //int i = 0;
+
+        }
         if (mainMenuManager.selectedButton != this) audioManager.Play("ButtonClick");
         mainMenuManager.selectedButton = this;
 
         ChangeImageColour(mainMenuManager.background);
+        TMPro.TextMeshProUGUI txt2 = mainMenuManager.selectedButton.text.GetComponent<TMPro.TextMeshProUGUI>();
+        txt2.color = mainMenuManager.normal;
         panel.SetActive(true);
     }
 

@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
     path: Assets/Scenes/FlashCards.unity
     guid: 7a29c880322f9394aa953bc4337b8167
   - enabled: 1
@@ -15,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/SpeedClicker.unity
     guid: b5d00843243c3f04f929380616aaafa0
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/FastReactions.unity
+    guid: dbd7700fdec6d10468f3a91ac6d52240
+  - enabled: 1
+    path: Assets/Scenes/RememberMe.unity
+    guid: 37f545da6449d3a428545b99bc3421c1
   m_configObjects: {}

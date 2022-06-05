@@ -20,8 +20,8 @@ public class GameSetup : MonoBehaviour
         gameManager.loadScene("MainMenu");
     }
 
-    public void CheckIfHighScore(double score)
+    public void CheckIfHighScore(double score, int level)
     {
-        gameManager.TryStoreHighScore(SceneManager.GetActiveScene().name, score);
+        gameManager.TryStoreHighScore(SceneManager.GetActiveScene().name, score, level);
     }
 }

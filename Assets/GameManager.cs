@@ -32,11 +32,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
 
-    public void TryStoreHighScore(string gameName, double score)
+    public void TryStoreHighScore(string gameName, double score, int level)
     {
-        if(currentPlayer.gameScores.Count == 0)
+        if (currentPlayer.gameScores.Count == 0)
         {
-            GameScore gScore = new GameScore(gameName, score);
+            GameScore gScore = new GameScore(gameName, score, level);
             currentPlayer.addGameScore(gScore);
         }
         else
@@ -51,12 +51,30 @@ public class GameManager : MonoBehaviour
                     break;
                 }
             }
+            if (lastGameScore == null)
+            {
+                GameScore gScore = new GameScore(gameName, score, level);
+                currentPlayer.addGameScore(gScore);
+            }
+            if (lastGameScore.level >= level) {
+                lastGameScore.level = level;
+            }
+            if(lastGameScore.score >= score){
+                lastGameScore.score = score; // UPDATE SCORE
+            }
 
-            if(lastGameScore.score < score) return; // IF PLAYERS LAST SCORE IS BETTER WE DONT WANT TO CHANGE IT
-
-            lastGameScore.score = score; // UPDATE SCORE
         }
 
+    }
+
+    public string getHighScore()
+    {
+        string txt = "";
+        foreach (GameScore gs in currentPlayer.gameScores)
+        {
+            txt += "Game: " + gs.gameName +" score:" + gs.score.ToString("#0.00") + " level:" + gs.level +"\n";
+        }
+        return txt;
     }
 
     public void RetrieveHighScore()
