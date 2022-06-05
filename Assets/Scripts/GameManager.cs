@@ -44,13 +44,17 @@ public class GameManager : MonoBehaviour
 
     public void TryStoreHighScore(string gameName, double score)
     {
-        if(currentPlayer.gameScores.Count == 0)
+        if (firstTimePlayer)
         {
-            GameScore gScore = new GameScore(gameName, score);
-            currentPlayer.addGameScore(gScore);
+            allPlayerScores.Add(currentPlayer);
+            Debug.Log("ADDING PLAYER TO LIST");
+            firstTimePlayer = false;
         }
-         else
-         {
+
+        GameScore gScore = new GameScore(gameName, score);
+        bool found = false;
+        if (currentPlayer.name != "")
+        {
             foreach (Player p in allPlayerScores)
             {
                 if (p.name == currentPlayer.name)
@@ -59,14 +63,22 @@ public class GameManager : MonoBehaviour
                     {
                         if (gs.gameName == gameName)
                         {
+                            found = true;
                             if (gs.score > score)
                             {
+                                Debug.Log("ADDING SCORE");
                                 gs.score = score;
                             }
                         }
                     }
+
+                    if (found == false)
+                    {
+                        currentPlayer.addGameScore(gScore);
+                    }
                 }
             }
+
         }
     }
 
@@ -90,16 +102,6 @@ public class GameManager : MonoBehaviour
 
     public void OnApplicationQuit()
     {
-        if(currentPlayer.name != "" && currentPlayer.gameScores.Count > 0)
-        {
-            if(firstTimePlayer)
-            {
-                allPlayerScores.Add(currentPlayer);
-                Debug.Log("ADDING PLAYER TO LIST");
-            }
-
-        }
-
         FileManager.SaveScores(allPlayerScores);
     }
 }
