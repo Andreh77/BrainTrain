@@ -32,6 +32,10 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
 
+    private void Update() {
+        Debug.Log(StatsData.flashCardsScore.Count);
+    }
+
     public void TryStoreHighScore(string gameName, double score)
     {
         if(currentPlayer.gameScores.Count == 0)
@@ -39,23 +43,23 @@ public class GameManager : MonoBehaviour
             GameScore gScore = new GameScore(gameName, score);
             currentPlayer.addGameScore(gScore);
         }
-        else
-        {
-            GameScore lastGameScore = null;
+        // else
+        // {
+        //     GameScore lastGameScore = null;
 
-            foreach (GameScore gs in currentPlayer.gameScores)
-            {
-                if (gs.gameName == gameName)
-                {
-                    lastGameScore = gs;
-                    break;
-                }
-            }
+        //     foreach (GameScore gs in currentPlayer.gameScores)
+        //     {
+        //         if (gs.gameName == gameName)
+        //         {
+        //             lastGameScore = gs;
+        //             break;
+        //         }
+        //     }
 
-            if(lastGameScore.score < score) return; // IF PLAYERS LAST SCORE IS BETTER WE DONT WANT TO CHANGE IT
+        //     if(lastGameScore.score < score) return; // IF PLAYERS LAST SCORE IS BETTER WE DONT WANT TO CHANGE IT
 
-            lastGameScore.score = score; // UPDATE SCORE
-        }
+        //     lastGameScore.score = score; // UPDATE SCORE
+        // }
 
     }
 

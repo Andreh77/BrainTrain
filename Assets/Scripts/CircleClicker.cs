@@ -122,6 +122,7 @@ public class CircleClicker : GameMode
         scoresUI.text += "[Attempt " + (level) + "(" + scores[scores.Count - 1].ToString("F4") + " seconds)] \n";
         level++;
         GetComponent<GameSetup>().CheckIfHighScore(scores[scores.Count - 1]);
+        StatsData.circleClickerTimeScore.Add((float) System.Math.Round(scores[scores.Count - 1], 2));
         //numberOfBalls = level * 2;
         ballsLeft = numberOfBalls;
         timer.Reset();
