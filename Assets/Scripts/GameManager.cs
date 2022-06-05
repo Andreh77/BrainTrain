@@ -7,11 +7,20 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public Player currentPlayer;
+
+    public List<Player> allPlayerScores = new List<Player>();
+    public bool firstTimePlayer = false;
     private void Start()
+    {
+        RetrieveScores();
+    }
+    private void RetrieveScores()
     {
         if(instance == null)
         {
             instance = this;
+
+            allPlayerScores = FileManager.ReadScores();
             DontDestroyOnLoad(this);
         }
         else
@@ -24,6 +33,7 @@ public class GameManager : MonoBehaviour
     {
         // FILE LOOKUP TO SEE IF PLAYER EXISTS
         currentPlayer = new Player(name);
+        firstTimePlayer = CheckIfPlayerHasScores();
     }
 
     public void loadScene(string sceneName)
@@ -43,28 +53,57 @@ public class GameManager : MonoBehaviour
             GameScore gScore = new GameScore(gameName, score);
             currentPlayer.addGameScore(gScore);
         }
-        // else
-        // {
-        //     GameScore lastGameScore = null;
-
-        //     foreach (GameScore gs in currentPlayer.gameScores)
-        //     {
-        //         if (gs.gameName == gameName)
-        //         {
-        //             lastGameScore = gs;
-        //             break;
-        //         }
-        //     }
-
-        //     if(lastGameScore.score < score) return; // IF PLAYERS LAST SCORE IS BETTER WE DONT WANT TO CHANGE IT
-
-        //     lastGameScore.score = score; // UPDATE SCORE
-        // }
-
+         else
+         {
+            foreach (Player p in allPlayerScores)
+            {
+                if (p.name == currentPlayer.name)
+                {
+                    foreach (GameScore gs in p.gameScores)
+                    {
+                        if (gs.gameName == gameName)
+                        {
+                            if (gs.score > score)
+                            {
+                                gs.score = score;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
-    public void RetrieveHighScore()
+    public bool CheckIfPlayerHasScores()
     {
-        // if new score is a record, store it in a file
+        foreach(Player p in allPlayerScores)
+        {
+            if(p.name == currentPlayer.name)
+            {
+                foreach(GameScore gs in p.gameScores)
+                {
+                    currentPlayer.addGameScore(gs);
+                }
+                Debug.Log("Retriving old scores");
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public void OnApplicationQuit()
+    {
+        if(currentPlayer.name != "" && currentPlayer.gameScores.Count > 0)
+        {
+            if(firstTimePlayer)
+            {
+                allPlayerScores.Add(currentPlayer);
+                Debug.Log("ADDING PLAYER TO LIST");
+            }
+
+        }
+
+        FileManager.SaveScores(allPlayerScores);
     }
 }

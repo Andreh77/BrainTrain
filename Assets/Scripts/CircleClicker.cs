@@ -56,18 +56,18 @@ public class CircleClicker : GameMode
 
     private void Update()
     {
-        foreach(GameObject ball in balls)
-        {
-            ball.GetComponent<SpriteRenderer>().color = Color.black;
-            if (ballClosestToMouse == null) { ballClosestToMouse = ball;}
+        //foreach(GameObject ball in balls)
+        //{
+        //    ball.GetComponent<SpriteRenderer>().color = Color.black;
+        //    if (ballClosestToMouse == null) { ballClosestToMouse = ball;}
             
-            if(Vector3.Distance(ballClosestToMouse.transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) > Vector3.Distance(ball.transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)))
-            {
-                ballClosestToMouse = ball;
-            }
-        }
+        //    if(Vector3.Distance(ballClosestToMouse.transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) > Vector3.Distance(ball.transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)))
+        //    {
+        //        ballClosestToMouse = ball;
+        //    }
+        //}
         //ballClosestToMouse.GetComponent<SpriteRenderer>().color = Color.white;
-        Debug.DrawLine(Camera.main.ScreenToWorldPoint(Input.mousePosition), ballClosestToMouse.transform.position, Color.blue);
+        //Debug.DrawLine(Camera.main.ScreenToWorldPoint(Input.mousePosition), ballClosestToMouse.transform.position, Color.blue);
     }
     public void CheckClick()
     {
