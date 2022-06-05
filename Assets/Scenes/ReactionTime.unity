@@ -927,7 +927,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &485069438
@@ -1107,7 +1107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
-  gameName: FlashCards
+  gameName: ReactionTime
 --- !u!114 &557966772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2298,8 +2298,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Wait for it...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 01ea949a9aff62e4f80102ca669bf1a1, type: 2}
-  m_sharedMaterial: {fileID: 1762690766805576657, guid: 01ea949a9aff62e4f80102ca669bf1a1, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2323,7 +2323,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 41.65
+  m_fontSize: 44.75
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

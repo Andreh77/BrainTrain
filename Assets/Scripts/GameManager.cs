@@ -114,6 +114,14 @@ public class GameManager : MonoBehaviour
         return txt;
     }
 
+    public string getHightLevel(string name) {
+        foreach (GameScore gs in currentPlayer.gameScores)
+        {
+            if (gs.gameName == name) return gs.level + "";
+        }
+        return "0";
+    }
+
     public void OnApplicationQuit()
     {
         FileManager.SaveScores(allPlayerScores);

@@ -2451,8 +2451,9 @@ GameObject:
   - component: {fileID: 293020799}
   - component: {fileID: 293020801}
   - component: {fileID: 293020800}
+  - component: {fileID: 293020802}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text (D)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2575,6 +2576,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 293020798}
   m_CullTransparentMesh: 1
+--- !u!114 &293020802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293020798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74e705ade8072da4a957e8c6e8ef0628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  name: 
+  desc: 
+  gamename: FlashCards
+  showname: FlashCards
+  parent: {fileID: 1593739858}
 --- !u!1 &303649055
 GameObject:
   m_ObjectHideFlags: 0
@@ -4790,8 +4809,9 @@ GameObject:
   - component: {fileID: 555357234}
   - component: {fileID: 555357236}
   - component: {fileID: 555357235}
+  - component: {fileID: 555357237}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text (A)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4914,6 +4934,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 555357233}
   m_CullTransparentMesh: 1
+--- !u!114 &555357237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 555357233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74e705ade8072da4a957e8c6e8ef0628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  name: 
+  desc: 
+  gamename: Moving Circle Clicker
+  showname: CIRCLE CLICKER
+  parent: {fileID: 1593739858}
 --- !u!1 &557676474
 GameObject:
   m_ObjectHideFlags: 0
@@ -8779,8 +8817,9 @@ GameObject:
   - component: {fileID: 1156433653}
   - component: {fileID: 1156433655}
   - component: {fileID: 1156433654}
+  - component: {fileID: 1156433656}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text (E)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8903,6 +8942,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1156433652}
   m_CullTransparentMesh: 1
+--- !u!114 &1156433656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1156433652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74e705ade8072da4a957e8c6e8ef0628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  name: 
+  desc: 
+  gamename: Hidden Circle Clicker
+  showname: Hidden Circle
+  parent: {fileID: 1593739858}
 --- !u!1 &1173002833
 GameObject:
   m_ObjectHideFlags: 0
@@ -11141,8 +11198,9 @@ GameObject:
   - component: {fileID: 1539492201}
   - component: {fileID: 1539492203}
   - component: {fileID: 1539492202}
+  - component: {fileID: 1539492204}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text (C)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11265,6 +11323,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1539492200}
   m_CullTransparentMesh: 1
+--- !u!114 &1539492204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1539492200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74e705ade8072da4a957e8c6e8ef0628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  name: 
+  desc: 
+  gamename: FastReactions
+  showname: Fast Reactions
+  parent: {fileID: 1593739858}
 --- !u!1 &1543517758
 GameObject:
   m_ObjectHideFlags: 0
@@ -11428,8 +11504,9 @@ GameObject:
   - component: {fileID: 1551719154}
   - component: {fileID: 1551719156}
   - component: {fileID: 1551719155}
+  - component: {fileID: 1551719157}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text (F)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11552,6 +11629,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1551719153}
   m_CullTransparentMesh: 1
+--- !u!114 &1551719157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1551719153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74e705ade8072da4a957e8c6e8ef0628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  name: 
+  desc: 
+  gamename: ReactionTime
+  showname: Reaction Time
+  parent: {fileID: 1593739858}
 --- !u!1 &1556128091
 GameObject:
   m_ObjectHideFlags: 0
@@ -12853,8 +12948,9 @@ GameObject:
   - component: {fileID: 1669758876}
   - component: {fileID: 1669758878}
   - component: {fileID: 1669758877}
+  - component: {fileID: 1669758879}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text (B)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12977,6 +13073,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1669758875}
   m_CullTransparentMesh: 1
+--- !u!114 &1669758879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1669758875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74e705ade8072da4a957e8c6e8ef0628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 0}
+  name: 
+  desc: 
+  gamename: ClickSpeed
+  showname: Speed Clicker
+  parent: {fileID: 1593739858}
 --- !u!1 &1710823275
 GameObject:
   m_ObjectHideFlags: 0

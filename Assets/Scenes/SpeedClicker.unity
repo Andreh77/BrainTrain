@@ -2279,7 +2279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
-  gameName: ' '
+  gameName: ClickSpeed
 --- !u!114 &1798714923
 MonoBehaviour:
   m_ObjectHideFlags: 0

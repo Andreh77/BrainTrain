@@ -622,11 +622,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Instructions
-
-    -Click on all the moving circles as fast as possible.
-
-'
+  m_text: "Instructions\n-Click on all the moving circles as fast as possible. \n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 833723ea8b7b19d449d2a39b57bb7088, type: 2}
   m_sharedMaterial: {fileID: 2638136268887289894, guid: 833723ea8b7b19d449d2a39b57bb7088, type: 2}
@@ -2180,7 +2176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 074a6dd21c3942a41add5a374dd6458f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1199955200}
+  gameManager: {fileID: 0}
   gameName: Moving Circle Clicker
 --- !u!114 &1798714923
 MonoBehaviour:
