@@ -43,6 +43,21 @@ public class AudioManager : MonoBehaviour
            Debug.LogWarning("Sound label " + name + " not found. Check spelling or capitalization.");
            return;
        }
+       
+       if (!s.flagged || s.flagged && !isSFXPlaying) s.source.Play();
+       if (s.flagged && !isSFXPlaying) StartCoroutine(SFXCheck());
+    }
+
+    public void PlaySpecial(string name, float pitch)
+    {
+       Sound s = Array.Find(sounds, sound => sound.soundName == name);
+       if (s == null)
+       {
+           Debug.LogWarning("Sound label " + name + " not found. Check spelling or capitalization.");
+           return;
+       }
+       
+       s.source.pitch = pitch;
        if (!s.flagged || s.flagged && !isSFXPlaying) s.source.Play();
        if (s.flagged && !isSFXPlaying) StartCoroutine(SFXCheck());
     }

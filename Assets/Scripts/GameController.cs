@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
     public const int rows = 2;
 
     public const float Xspace = 4f;
+    private float time;
     public const float Yspace = -5f;
 
     [SerializeField] private FlashCards startObject;
@@ -135,9 +136,12 @@ public class GameController : MonoBehaviour
         {
             GameManager gameManager = FindObjectOfType<GameManager>();
             audioManager.Play("Select");
-            gameManager.TryStoreHighScore(SceneManager.GetActiveScene().name, score, 1);
-            PlayerPrefs.SetString("scoreText", PlayerPrefs.GetString("scoreText") + "[Attempt " + (PlayerPrefs.GetInt("FCAttempt", 0)) + " (" + Mathf.Round((float) timer.Stop()).ToString() + "s, " + attempts +" guesses)] \n");
+            time = Mathf.Round((float) timer.Stop());
+            gameManager.TryStoreHighScore(SceneManager.GetActiveScene().name, (double) score, 1);
+            PlayerPrefs.SetString("scoreText", PlayerPrefs.GetString("scoreText") + "[Attempt " + (PlayerPrefs.GetInt("FCAttempt", 0)) + " (" + time + "s, " + attempts +" guesses)] \n");
             scoresUI.text = PlayerPrefs.GetString("scoreText");
+
+            StatsData.flashCardsScore.Add(time);
         } 
     }
 
