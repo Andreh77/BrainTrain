@@ -36,12 +36,12 @@ public class MainMenuManager : MonoBehaviour
         pauseText = pause.GetComponentInChildren<TextMeshProUGUI>();
     }
 
-    private float GetAvg(List<float> list)
+    private float GetAvg(List<float> list, int n = 10)
     {
         float num;
-        num =  (list.Count > 0) ? list[0] : 0;
+        num = (list.Count > 0) ? list[0] : 0;
 
-        for (int i = 0; i < list.Count; i++)
+        for (int i = Mathf.Max(0, list.Count - n); i < list.Count; i++)
         {
             num += list[i];
         }
