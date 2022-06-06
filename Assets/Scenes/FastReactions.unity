@@ -1377,9 +1377,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Instructions
 
-    -Click when the screen truns green.
-
-'
+    -Click when the screen truns green.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 833723ea8b7b19d449d2a39b57bb7088, type: 2}
   m_sharedMaterial: {fileID: 2638136268887289894, guid: 833723ea8b7b19d449d2a39b57bb7088, type: 2}
@@ -1860,6 +1858,8 @@ MonoBehaviour:
     name: 
     overallScore: 0
     gameScores: []
+  allPlayerScores: []
+  firstTimePlayer: 0
 --- !u!4 &1708474589
 Transform:
   m_ObjectHideFlags: 0

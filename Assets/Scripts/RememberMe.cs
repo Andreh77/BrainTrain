@@ -44,7 +44,6 @@ public class RememberMe : GameMode
         height = Camera.main.orthographicSize * 2;
         width = height * Camera.main.aspect;
         startUI.SetActive(true);
-        //numberOfBalls = level * 2;
         numberOfBalls += level;
         ballsLeft = numberOfBalls;
         SpawnBalls();

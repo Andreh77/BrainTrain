@@ -1617,9 +1617,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Instructions
 
-    -Click on all the hidden circles as fast as possible.
-
-'
+    -Click on all the hidden circles as fast as possible.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 833723ea8b7b19d449d2a39b57bb7088, type: 2}
   m_sharedMaterial: {fileID: 2638136268887289894, guid: 833723ea8b7b19d449d2a39b57bb7088, type: 2}
@@ -3301,6 +3299,8 @@ MonoBehaviour:
     name: 
     overallScore: 0
     gameScores: []
+  allPlayerScores: []
+  firstTimePlayer: 0
 --- !u!4 &2144848272
 Transform:
   m_ObjectHideFlags: 0

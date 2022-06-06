@@ -36,7 +36,7 @@ public class FastReactions : MonoBehaviour
     public long showtime = 0;
 
     private void Start()
-    {
+    { 
         height = Camera.main.orthographicSize * 2;
         width = height * Camera.main.aspect;
         startUI.SetActive(true);
