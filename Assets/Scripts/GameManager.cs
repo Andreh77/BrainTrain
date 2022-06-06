@@ -42,16 +42,16 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
 
-    public void TryStoreHighScore(string gameName, double score, int level)
+    public void TryStoreHighScore(string catagory, string gameName, double score)
     {
         if (firstTimePlayer)
         {
             allPlayerScores.Add(currentPlayer);
-            Debug.Log("ADDING PLAYER TO LIST");
+            //Debug.Log("ADDING PLAYER TO LIST");
             firstTimePlayer = false;
         }
 
-        GameScore gScore = new GameScore(gameName, score, level);
+        GameScore gScore = new GameScore(catagory, gameName, score);
         bool found = false;
         if (currentPlayer.name != "")
         {
@@ -66,12 +66,8 @@ public class GameManager : MonoBehaviour
                             found = true;
                             if (gs.score > score)
                             {
-                                Debug.Log("ADDING SCORE");
+                                //Debug.Log("ADDING SCORE");
                                 gs.score = score;
-                            }
-                            if (gs.level > level)
-                            {
-                                gs.level = level;
                             }
                         }
                     }
@@ -109,18 +105,18 @@ public class GameManager : MonoBehaviour
         string txt = "";
         foreach (GameScore gs in currentPlayer.gameScores)
         {
-            txt += "Game: " + gs.gameName + " score:" + gs.score.ToString("#0.00") + " level:" + gs.level + "\n";
+            txt += "Game: " + gs.gameName + " score:" + gs.score.ToString("#0.00") + "\n";
         }
         return txt;
     }
 
-    public string getHightLevel(string name) {
-        foreach (GameScore gs in currentPlayer.gameScores)
-        {
-            if (gs.gameName == name) return gs.level + "";
-        }
-        return "0";
-    }
+    //public string getHightLevel(string name) {
+    //    foreach (GameScore gs in currentPlayer.gameScores)
+    //    {
+    //        if (gs.gameName == name) return gs.level + "";
+    //    }
+    //    return "0";
+    //}
 
     public void OnApplicationQuit()
     {

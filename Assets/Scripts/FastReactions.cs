@@ -123,7 +123,7 @@ public class FastReactions : MonoBehaviour
             scoresUI.text = "Instructions \n- Click when the screen truns green.\n";
             scores.Clear();
         }
-        GetComponent<GameSetup>().CheckIfHighScore(scores[scores.Count - 1], level);
+        GetComponent<GameSetup>().CheckIfHighScore("reflex", scores[scores.Count - 1]);
         clicked = false;
         timer.Reset(); 
         timer2.Reset();

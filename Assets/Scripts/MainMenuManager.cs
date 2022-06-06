@@ -63,23 +63,23 @@ public class MainMenuManager : MonoBehaviour
 
     private void SortUI()
     {
-        flashAvg.text = "AVG: " + GetAvg(StatsData.flashCardsScore).ToString() + "s";
-        flashPb.text = "PB: " + StatsData.Min(StatsData.flashCardsScore).ToString() + "s";
-        flashScores.text = StatsData.GetLastItems(StatsData.flashCardsScore, 10, "s");
+        //flashAvg.text = "AVG: " + GetAvg(StatsData.flashCardsScore).ToString() + "s";
+        //flashPb.text = "PB: " + StatsData.Min(StatsData.flashCardsScore).ToString() + "s";
+        //flashScores.text = StatsData.GetLastItems(StatsData.flashCardsScore, 10, "s");
 
-        rtAvg.text = "AVG: " + GetAvg(StatsData.reactionTimeScore).ToString() + " ms";
-        rtPb.text = "PB: " + StatsData.Min(StatsData.reactionTimeScore).ToString() + " ms";
-        rtScores.text = StatsData.GetLastItems(StatsData.reactionTimeScore, 10, " ms");
+        //rtAvg.text = "AVG: " + GetAvg(StatsData.reactionTimeScore).ToString() + " ms";
+        //rtPb.text = "PB: " + StatsData.Min(StatsData.reactionTimeScore).ToString() + " ms";
+        //rtScores.text = StatsData.GetLastItems(StatsData.reactionTimeScore, 10, " ms");
 
-        circleAvg.text = "AVG: " + GetAvg(StatsData.circleClickerTimeScore).ToString() + "s";
-        circlePb.text = "PB: " + StatsData.Min(StatsData.circleClickerTimeScore).ToString() + "s";
-        circleScores.text = StatsData.GetLastItems(StatsData.circleClickerTimeScore, 10, "s");
+        //circleAvg.text = "AVG: " + GetAvg(StatsData.circleClickerTimeScore).ToString() + "s";
+        //circlePb.text = "PB: " + StatsData.Min(StatsData.circleClickerTimeScore).ToString() + "s";
+        //circleScores.text = StatsData.GetLastItems(StatsData.circleClickerTimeScore, 10, "s");
 
-        speedAvg.text = "AVG: " + GetAvg(StatsData.speedClickerTimeScore).ToString() + "s";
-        speedPb.text = "PB: " + StatsData.Min(StatsData.speedClickerTimeScore).ToString() + "s";
-        speedScores.text = StatsData.GetLastItems(StatsData.speedClickerTimeScore, 10, "s");
+        //speedAvg.text = "AVG: " + GetAvg(StatsData.speedClickerTimeScore).ToString() + "s";
+        //speedPb.text = "PB: " + StatsData.Min(StatsData.speedClickerTimeScore).ToString() + "s";
+        //speedScores.text = StatsData.GetLastItems(StatsData.speedClickerTimeScore, 10, "s");
 
-        pauseText.text = (PlayerPrefs.GetInt("musicPaused", 0) == 0) ? "Pause Music" : "Play Music";
+        //pauseText.text = (PlayerPrefs.GetInt("musicPaused", 0) == 0) ? "Pause Music" : "Play Music";
     }
 
     public void SetupPlayer()

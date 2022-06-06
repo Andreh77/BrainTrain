@@ -11,12 +11,12 @@ public class GameBtn : GameMode
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<TMPro.TextMeshProUGUI>().text = showname + " lv:" + parent.GetComponent<GameManager>().getHightLevel(gamename);
+        //GetComponent<TMPro.TextMeshProUGUI>().text = showname + " lv:" + parent.GetComponent<GameManager>().getHightLevel(gamename);
     }
 
     // Update is called once per frame
     void Update()
     {
-        GetComponent<TMPro.TextMeshProUGUI>().text = showname + " lv:" + parent.GetComponent<GameManager>().getHightLevel(gamename);
+        //GetComponent<TMPro.TextMeshProUGUI>().text = showname + " lv:" + parent.GetComponent<GameManager>().getHightLevel(gamename);
     }
 }

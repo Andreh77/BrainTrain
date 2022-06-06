@@ -137,7 +137,7 @@ public class GameController : MonoBehaviour
             GameManager gameManager = FindObjectOfType<GameManager>();
             audioManager.Play("Select");
             time = Mathf.Round((float) timer.Stop());
-            gameManager.TryStoreHighScore(SceneManager.GetActiveScene().name, (double) score, 1);
+            gameManager.TryStoreHighScore("memory", SceneManager.GetActiveScene().name, (double) score);
             PlayerPrefs.SetString("scoreText", PlayerPrefs.GetString("scoreText") + "[Attempt " + (PlayerPrefs.GetInt("FCAttempt", 0)) + " (" + time + "s, " + attempts +" guesses)] \n");
             scoresUI.text = PlayerPrefs.GetString("scoreText");
 

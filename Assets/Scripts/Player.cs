@@ -25,18 +25,11 @@ public class GameScore
 {
     public string gameName;
     public double score;
-    public int level;
-
-    public GameScore(string _gameName, double _score)
+    public string catagory;
+    public GameScore(string _catagory, string _gameName, double _score)
     {
+        catagory = _catagory;
         gameName = _gameName;
         score = _score;
-        level = 1;
-    }
-    public GameScore(string _gameName, double _score, int _level)
-    {
-        gameName = _gameName;
-        score = _score;
-        level = _level;
     }
 }

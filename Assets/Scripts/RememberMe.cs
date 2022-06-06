@@ -154,7 +154,7 @@ public class RememberMe : GameMode
         try
         {
             if(gs != null)
-                gs.CheckIfHighScore(scores[scores.Count - 1], level);
+                gs.CheckIfHighScore("memory", scores[scores.Count - 1]);
         } catch (System.Exception ex) {
             System.Console.WriteLine(ex.ToString());
         }

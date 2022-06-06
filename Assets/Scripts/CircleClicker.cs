@@ -123,7 +123,7 @@ public class CircleClicker : GameMode
         level++;
         try
         {
-            GetComponent<GameSetup>().CheckIfHighScore(scores[scores.Count - 1], level);
+            GetComponent<GameSetup>().CheckIfHighScore("coordination", scores[scores.Count - 1]);
         }
         catch (System.Exception e) {
             System.Console.WriteLine(e.Message);
