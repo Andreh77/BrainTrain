@@ -102,7 +102,7 @@ public class StatisticManager : MonoBehaviour
         ch.GetComponent<Score>().name = name;
         ch.GetComponent<Score>().gameName = game;
         ch.GetComponent<Score>().score = score;
-        ch.GetComponentInChildren<TMP_Text>().text = "NAME: " + name + " GAME: " + game + " SCORE: " + score.ToString("F4") + "s";
+        ch.GetComponentInChildren<TMP_Text>().text = "[NAME: " + name + "] [GAME: " + game + "] [SCORE: " + score.ToString("F3") + "s]";
         return ch;    
     }
 }
