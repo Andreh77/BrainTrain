@@ -10,7 +10,7 @@ public class MainMenuManager : MonoBehaviour
 {
     public Color normal, header, background;
     public ButtonManager selectedButton;
-    [SerializeField] private TextMeshProUGUI flashAvg, flashPb, flashScores, rtAvg, rtPb, rtScores, circleAvg, circlePb, circleScores, speedAvg, speedPb, speedScores;
+    [SerializeField] private TextMeshProUGUI flashAvg, flashPb, flashScores, rtAvg, rtPb, rtScores, circleAvg, circlePb, circleScores, speedAvg, speedPb, speedScores, loginStatus;
     public TMP_InputField nameEntry;
     private AudioManager audioManager;
     public GameManager gameManager;
@@ -19,18 +19,24 @@ public class MainMenuManager : MonoBehaviour
     public int numberOfBalls = 1000;
 
     public Animation anim;
-
+    public string loginStatusDefault;
     [SerializeField] private Image pause;
     private TextMeshProUGUI pauseText;
 
 
+    public void displayLoggedIn(string name)
+    {
+        loginStatus.text = "Welcome " + name;
+    }
+
     private void Start()
-    {     
+    {
+        loginStatusDefault = loginStatus.text;
         gameManager = GameManager.instance;
-        // for (int i = 0; i < numberOfBalls; i++)
-        // {
-        //     Instantiate(ball);
-        // }
+         for (int i = 0; i < numberOfBalls; i++)
+         {
+            Instantiate(ball);
+         }
 
         audioManager = FindObjectOfType<AudioManager>();
         pauseText = pause.GetComponentInChildren<TextMeshProUGUI>();
@@ -52,6 +58,11 @@ public class MainMenuManager : MonoBehaviour
 
     private void Update()
     {
+        if(gameManager.currentPlayer != null && loginStatus.text != loginStatusDefault)
+        {
+            displayLoggedIn(gameManager.currentPlayer.name);
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             GameObject mouseClickInst = Instantiate(mouseClick, Camera.main.ScreenToWorldPoint(Input.mousePosition) , Quaternion.identity);
@@ -86,6 +97,7 @@ public class MainMenuManager : MonoBehaviour
     {
         string name = nameEntry.text;
         gameManager.CheckIfNewPlayer(name);
+        displayLoggedIn(name);
     }
 
     public void MusicToggle()

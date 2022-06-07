@@ -75,6 +75,7 @@ public class GameManager : MonoBehaviour
                     if (found == false)
                     {
                         currentPlayer.addGameScore(gScore);
+                        p.addGameScore(gScore);
                     }
                 }
             }
