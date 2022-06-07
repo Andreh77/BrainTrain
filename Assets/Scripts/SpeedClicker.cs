@@ -79,6 +79,7 @@ public class SpeedClicker : MonoBehaviour
         timer.Stop();
         double score = timer.time;
         scoresUI.text += "[Attempt " + (level) + "(" + (float) System.Math.Round(score, 2) + " seconds)] \n";
+        GameManager.instance.TryStoreHighScore("reflex", "Speed Clicker", score);
         level++;
         StatsData.speedClickerTimeScore.Add((float) System.Math.Round(score, 2));
         clicksLeft = clickLimit;

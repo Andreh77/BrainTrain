@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     {
         // FILE LOOKUP TO SEE IF PLAYER EXISTS
         currentPlayer = new Player(name);
-        firstTimePlayer = CheckIfPlayerHasScores();
+        firstTimePlayer = CheckIfPlayerIsNew();
     }
 
     public void loadScene(string sceneName)
@@ -74,7 +74,6 @@ public class GameManager : MonoBehaviour
 
                     if (found == false)
                     {
-                        currentPlayer.addGameScore(gScore);
                         p.addGameScore(gScore);
                     }
                 }
@@ -83,17 +82,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public bool CheckIfPlayerHasScores()
+    public bool CheckIfPlayerIsNew()
     {
         foreach(Player p in allPlayerScores)
         {
             if(p.name == currentPlayer.name)
             {
-                foreach(GameScore gs in p.gameScores)
-                {
-                    currentPlayer.addGameScore(gs);
-                }
-                Debug.Log("Retriving old scores");
+                currentPlayer.name = p.name;
                 return false;
             }
         }

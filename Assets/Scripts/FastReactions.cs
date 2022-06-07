@@ -115,7 +115,12 @@ public class FastReactions : MonoBehaviour
 
     public void NextLevel()
     {
-        scoresUI.text += "[Attempt " + (level) + "(" + scores[scores.Count - 1].ToString("F4") + " seconds)] \n";
+        if(scores.Count > 0)
+        {
+            scoresUI.text += "[Attempt " + (level) + "(" + scores[scores.Count - 1].ToString("F4") + " seconds)] \n";
+            GameManager.instance.TryStoreHighScore("reflex", "Fast Reactions", scores[scores.Count - 1]);
+        }
+
         level++;
         
         if (!showing)
@@ -123,7 +128,8 @@ public class FastReactions : MonoBehaviour
             scoresUI.text = "Instructions \n- Click when the screen truns green.\n";
             scores.Clear();
         }
-        GetComponent<GameSetup>().CheckIfHighScore("reflex", scores[scores.Count - 1]);
+   
+        //GetComponent<GameSetup>().CheckIfHighScore("reflex", scores[scores.Count - 1]);
         clicked = false;
         timer.Reset(); 
         timer2.Reset();
