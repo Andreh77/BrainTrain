@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Linq;
+
 public class StatisticManager : MonoBehaviour
 {
     public GameManager gameManager;
@@ -29,6 +31,7 @@ public class StatisticManager : MonoBehaviour
             {
                 scoreCount = gameManager.allPlayerScores.Count;
                 Debug.Log("CREATING HIGHSCORE");
+
                 foreach (Player p in gameManager.allPlayerScores)
                 {
                     foreach (GameScore gs in p.gameScores)
@@ -37,17 +40,17 @@ public class StatisticManager : MonoBehaviour
                         {
                             case "coordination":
                                 {
-                                    CreateScoreHolder(p.name, gs.gameName, (float)gs.score, coordination);
+                                    SortScores(gs, p, coordination);
                                     break;
                                 }
                             case "memory":
                                 {
-                                    CreateScoreHolder(p.name, gs.gameName, (float)gs.score, memory);
+                                    SortScores(gs, p, memory);
                                     break;
                                 }
                             case "reflex":
                                 {
-                                    CreateScoreHolder(p.name, gs.gameName, (float)gs.score, reflex);
+                                    SortScores(gs, p, reflex);
                                     break;
                                 }
                         }
@@ -58,9 +61,48 @@ public class StatisticManager : MonoBehaviour
         }
     }
 
-    void CreateScoreHolder(string name, string game, float score, GameObject parent)
+
+    bool SortScores(GameScore gs, Player p, GameObject parent)
+    {
+        if (coordination.transform.childCount > 0)
+        {
+            if (coordination.transform.GetChild(0).GetComponent<Score>().score > gs.score)
+            {
+                GameObject scoreHolder = CreateScoreHolder(p.name, gs.gameName, (float)gs.score, parent);
+                scoreHolder.transform.SetAsFirstSibling();
+                return true;
+            }
+            else
+            {
+                foreach (Transform child in coordination.transform)
+                {
+                    if (child.GetComponent<Score>().score > gs.score)
+                    {
+                        GameObject scoreHolder = CreateScoreHolder(p.name, gs.gameName, (float)gs.score, parent);
+                        scoreHolder.transform.SetSiblingIndex(child.GetSiblingIndex());
+                        return true;
+                    }
+                }
+
+                GameObject scoreHolder2 = CreateScoreHolder(p.name, gs.gameName, (float)gs.score, parent);
+                scoreHolder2.transform.SetAsLastSibling();
+                return true;
+            }
+        }
+        else
+        {
+            GameObject scoreHolder2 = CreateScoreHolder(p.name, gs.gameName, (float)gs.score, coordination);
+            return true;
+        }
+    }
+
+    GameObject CreateScoreHolder(string name, string game, float score, GameObject parent)
     {
         GameObject ch = Instantiate(scoreHolder, parent.transform);
-        ch.GetComponentInChildren<TMP_Text>().text = "NAME: " + name + " || GAME: " + game + "|| SCORE: " + score + "s";
+        ch.GetComponent<Score>().name = name;
+        ch.GetComponent<Score>().gameName = game;
+        ch.GetComponent<Score>().score = score;
+        ch.GetComponentInChildren<TMP_Text>().text = "NAME: " + name + " GAME: " + game + " SCORE: " + score.ToString("F4") + "s";
+        return ch;    
     }
 }

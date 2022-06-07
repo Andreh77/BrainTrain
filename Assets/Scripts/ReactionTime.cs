@@ -171,11 +171,13 @@ public class ReactionTime : MonoBehaviour
 
     void SetScoreText()
     {
+        Debug.Log(score);
+        Debug.Log(SceneManager.GetActiveScene().name);
         gameManager.TryStoreHighScore("reflex", SceneManager.GetActiveScene().name, score);
-        PlayerPrefs.SetString("reflexText", PlayerPrefs.GetString("reflexText") + "[Attempt " + (PlayerPrefs.GetInt("RTAttempt", 0)) + " (" + score.ToString() + " ms" + ")] \n");
-        scoresUI.text = PlayerPrefs.GetString("reflexText");
-        PlayerPrefs.SetInt("RTAttempt", PlayerPrefs.GetInt("RTAttempt", -1) + 1);
+        //PlayerPrefs.SetString("reflexText", PlayerPrefs.GetString("reflexText") + "[Attempt " + (PlayerPrefs.GetInt("RTAttempt", 0)) + " (" + score.ToString() + " ms" + ")] \n");
+        //scoresUI.text = PlayerPrefs.GetString("reflexText");
+        //PlayerPrefs.SetInt("RTAttempt", PlayerPrefs.GetInt("RTAttempt", -1) + 1);
 
-        StatsData.reactionTimeScore.Add(score);
+        //StatsData.reactionTimeScore.Add(score);
     }
 }
