@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 
 public class SpeedClicker : MonoBehaviour
 {
+    GameManager gameManager;
     [SerializeField] private GameObject startUI, destroyParticle, soundEffect;
     [SerializeField] private TextMeshProUGUI scoresUI;
     [HideInInspector] public bool canPlay = true;
@@ -29,7 +30,8 @@ public class SpeedClicker : MonoBehaviour
         startUI.SetActive(true);
         
         clicksLeft = clickLimit;
-        timer = new Timer();    
+        timer = new Timer();
+        gameManager = GameManager.instance;
     }
 
     // Update is called once per frame
@@ -79,7 +81,7 @@ public class SpeedClicker : MonoBehaviour
         timer.Stop();
         double score = timer.time;
         scoresUI.text += "[Attempt " + (level) + "(" + (float) System.Math.Round(score, 2) + " seconds)] \n";
-        GameManager.instance.TryStoreHighScore("reflex", "Speed Clicker", score);
+        gameManager.TryStoreHighScore("reflex", "Speed Clicker", score);
         level++;
         StatsData.speedClickerTimeScore.Add((float) System.Math.Round(score, 2));
         clicksLeft = clickLimit;
